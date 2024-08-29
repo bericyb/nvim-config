@@ -90,7 +90,13 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Customizations for me :)
 vim.cmd [[command! -nargs=0 Q :q]]
+
+-- Pesky Golang error handling
+vim.api.nvim_set_keymap('n', '@e', 'oif err != nil {<Enter><Enter>}<Esc>ki<Tab>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '@o', 'oif !ok {<Enter><Enter>}<Esc>ki<Tab>', { noremap = true, silent = true })
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
