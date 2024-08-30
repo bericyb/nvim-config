@@ -17,4 +17,5 @@ return {
   },
   { 'rebelot/kanagawa.nvim' },
   { 'tpope/vim-fugitive' },
+  { 'github/copilot.vim' },
 }

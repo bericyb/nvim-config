@@ -28,6 +28,13 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    dap.adapters.delve = {
+      name = 'Attach to port 2345',
+      type = 'server',
+      host = '127.0.0.1',
+      port = 2345,
+    }
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -88,7 +95,17 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup {
+      dap_configurations = {
+        {
+          type = 'go',
+          name = 'Attach remote',
+          mode = 'remote',
+          request = 'attach',
+          port = '2345',
+        },
+      },
       delve = {
+        port = '2345',
         -- On Windows delve must be run attached or it crashes.
         -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
         detached = vim.fn.has 'win32' == 0,
