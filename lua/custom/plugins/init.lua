@@ -17,5 +17,42 @@ return {
   },
   { 'rebelot/kanagawa.nvim' },
   { 'tpope/vim-fugitive' },
-  { 'github/copilot.vim' },
+  -- { 'github/copilot.vim' },
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('neotest').setup {
+        adapters = {
+          require 'neotest-golang',
+        },
+      }
+    end,
+    keys = {
+      {
+        '<leader>td',
+        function()
+          require('neotest').run.run()
+        end,
+        desc = 'Run nearest test',
+      },
+    },
+  },
+  { "rafamadriz/friendly-snippets" },
+  { 
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    config = function()
+	require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  }
 }
